@@ -32,10 +32,10 @@ const w = require( 'wumpfetch' );
 
 ;( async() => {
 	const r = await w( 'https://my-site.com/postboi', 'POST' )
-		.query( 'video', 'wumpboye' )													 // Add a query
-		.header({ 'Authorization': 'Pablito' })								 // Set a header
+		.query( 'video', 'wumpboye' )  			       // Add a query
+		.header({ 'Authorization': 'Pablito' })		       // Set a header
 		.post({ x: 'y', z: 1, beep: 'boop', chocolate: true }) // Send a json body
-		.timeout( 1000 )																			 // Set a 1s timeout
+		.timeout( 1000 )                                       // Set a 1s timeout
 		.send();
 
 	console.log( r.json() );
