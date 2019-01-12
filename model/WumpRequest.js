@@ -1,4 +1,4 @@
-const qs 			= require( 'querystring' );
+const qs      = require( 'querystring' );
 const zlib    = require( 'zlib' );
 const path    = require(  'path' );
 const http    = require( 'http' );
