@@ -29,7 +29,7 @@ module.exports = class WumpRequest {
 
 	query ( a, b ) {
 		if ( typeof a === 'object' ) Object.keys( a ).forEach( ( v ) => this.url.searchParams.append( v, a[ v ] ) );
-		else this.url.searchParams.append( a, ab )
+		else this.url.searchParams.append( a, b );
 
 		return this;
 	}
@@ -49,7 +49,7 @@ module.exports = class WumpRequest {
 	}
 
 	compress () {
-		this.compressed = true
+		this.compressed = true;
 		if ( !this.rHeaders[ 'accept-encoding' ] ) this.rHeaders[ 'accept-encoding' ] = c.join( ', ' );
 
 		return this;
@@ -97,10 +97,10 @@ module.exports = class WumpRequest {
 					wumpRes = new WumpResponse( res );
 
 					stream.on( 'error', ( e ) => reject( e ) );
-					stream.on( 'data', ( c ) => wumpRes._addChunk( c ) )
+					stream.on( 'data', ( c ) => wumpRes._addChunk( c ) );
 					stream.on( 'end', () => resolve( wumpRes ) );
 				}
-			}
+			};
 
 			if ( this.url.protocol === 'http:' ) req = http.request( options, resHandler );
 			else if (this.url.protocol === 'https:') req = https.request( options, resHandler );
@@ -119,4 +119,4 @@ module.exports = class WumpRequest {
 			req.end();
 		});
 	}
-}
+};
