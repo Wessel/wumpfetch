@@ -1,6 +1,6 @@
 const qs      = require( 'querystring' );
 const zlib    = require( 'zlib' );
-const path    = require(  'path' );
+const path    = require( 'path' );
 const http    = require( 'http' );
 const https   = require( 'https' );
 const { URL } = require( 'url' );
