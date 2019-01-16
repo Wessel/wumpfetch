@@ -14,107 +14,129 @@ module.exports = class WumpRequest {
 		const o   = typeof url === 'string' ? m : url;
 		const obj = typeof o === 'object';
 
-		this.m           = typeof o === 'string' ? o : obj && o.method ? o.method : 'GET';
-		this.url         = typeof url === 'string' ? new URL( url ) : obj && typeof o.url === 'string' ? new URL( o.url ) : url;
-		this.SDA         = obj && typeof o.sendDataAs === 'string' ? o.sendDataAs : null;
-		this.data        = obj && o.data ? o.data : null;
-		this.streamed    = obj && o.streamed ? true : false;
-		this.compressed  = obj && o.compressed ? true : false;
-		this.rHeaders    = obj && typeof o.headers === 'object' ? o.headers : {};
-		this.timeoutTime = obj && typeof o.timeout === 'number' ? o.timeout : null;
-		this.coreOptions = obj && typeof o.coreOptions === 'object' ? o.coreOptions : {};
+		if ( typeof url !== 'string' && !o.hasOwnProperty( 'url' ) ) throw new Error( 'Missing url parameter' );
+
+		this.o = {
+			'm'           : typeof o === 'string' ? o : obj && o.method ? o.method : 'GET',
+			'url'         : typeof url === 'string' ? new URL( url ) : obj && typeof o.url === 'string' ? new URL( o.url ) : url,
+			'SDA'         : obj && typeof o.sendDataAs === 'string' ? o.sendDataAs : null,
+			'data'        : obj && o.data ? o.data : obj && o.form ? qs.stringify( o.form ) : null,
+			'parse'       : obj && o.parse ? o.parse : null,
+			'follow'      : !!( obj && o.followRedirects ),
+			'streamed'    : !!( obj && o.streamed ),
+			'compressed'  : !!( obj && o.compressed ),
+			'rHeaders'    : obj && typeof o.headers === 'object' ? o.headers : {},
+			'timeoutTime' : obj && typeof o.timeout === 'number' ? o.timeout : null,
+			'coreOptions' : obj && typeof o.coreOptions === 'object' ? o.coreOptions : {}
+		};
+
+		if ( typeof o.core === 'object' ) Object.keys( o.core ).forEach( ( v ) => this.option( v, o.core[ v ] ) );
 
 		return this;
 	}
 
 	query ( a, b ) {
-		if ( typeof a === 'object' ) Object.keys( a ).forEach( ( v ) => this.url.searchParams.append( v, a[ v ] ) );
-		else this.url.searchParams.append( a, b );
+		if ( typeof a === 'object' ) Object.keys( a ).forEach( ( v ) => this.o.url.searchParams.append( v, a[ v ] ) );
+		else this.o.url.searchParams.append( a, b );
 
 		return this;
 	}
 
 	body ( data, SA ) {
-		this.SDA  = typeof data === 'object' && !SA && !Buffer.isBuffer( data ) ? 'json' : ( SA ? SA.toLowerCase() : 'buffer' );
-		this.data = this.SDA === 'form' ? qs.stringify( data ) : ( this.SDA === 'json' ? JSON.stringify( data ) : data );
+		this.o.SDA  = typeof data === 'object' && !SA && !Buffer.isBuffer( data ) ? 'json' : ( SA ? SA.toLowerCase() : 'buffer' );
+		this.o.data = this.SDA === 'form' ? qs.stringify( data ) : ( this.SDA === 'json' ? JSON.stringify( data ) : data );
 
 		return this;
 	}
 
 	header ( a, b ) {
-		if (typeof a === 'object') Object.keys( a ).forEach( ( v ) => this.rHeaders[ v.toLowerCase() ] = a[ v ] );
-		else this.rHeaders[ a.toLowerCase() ] = b;
+		if (typeof a === 'object') Object.keys( a ).forEach( ( v ) => this.o.rHeaders[ v.toLowerCase() ] = a[ v ] );
+		else this.o.rHeaders[ a.toLowerCase() ] = b;
 
 		return this;
 	}
 
 	compress () {
 		this.compressed = true;
-		if ( !this.rHeaders[ 'accept-encoding' ] ) this.rHeaders[ 'accept-encoding' ] = c.join( ', ' );
+		if ( !this.o.rHeaders[ 'accept-encoding' ] ) this.o.rHeaders[ 'accept-encoding' ] = c.join( ', ' );
 
 		return this;
 	}
 	
-	path ( p ) { this.url.pathname = path.join( this.url.pathname, p ); return this; }
-	stream () { this.streamed = true; return this; }
-	option ( n, v ) { this.coreOptions[ n ] = v; return this; }
-	timeout ( timeout ) { this.timeoutTime = timeout; return this; }
+	path ( p ) { this.o.url.pathname = path.join( this.o.url.pathname, p ); return this; }
+	stream () { this.o.streamed = true; return this; }
+	option ( n, v ) { this.o.coreOptions[ n ] = v; return this; }
+	timeout ( timeout ) { this.o.timeoutTime = timeout; return this; }
 
 	send () {
 		return new Promise( ( resolve, reject ) => {
-			if ( this.data ) {
-				if ( !this.rHeaders.hasOwnProperty( 'user-agent' ) ) this.rHeaders[ 'User-Agent' ] = 'wumpfetch/0.0.1 (https://github.com/PassTheWessel/wumpfetch)';
+			if ( this.o.data ) {
+				if ( !this.o.rHeaders.hasOwnProperty( 'user-agent' ) ) this.o.rHeaders[ 'User-Agent' ] = 'wumpfetch/0.0.1 (https://github.com/PassTheWessel/wumpfetch)';
 				
-				if ( this.SDA === 'json' && !this.rHeaders.hasOwnProperty( 'content-type' ) ) this.rHeaders[ 'Content-Type' ] = 'application/json';
-				if ( this.SDA === 'form') {
-					if ( !this.rHeaders.hasOwnProperty( 'content-type' ) ) this.rHeaders['Content-Type'] = 'application/x-www-form-urlencoded';
-					if ( !this.rHeaders.hasOwnProperty( 'content-length' ) ) this.rHeaders[ 'Content-Length' ] = Buffer.byteLength( this.data );
+				if ( this.o.SDA === 'json' && !this.o.rHeaders.hasOwnProperty( 'content-type' ) ) this.o.rHeaders[ 'Content-Type' ] = 'application/json';
+				if ( this.o.SDA === 'form') {
+					if ( !this.o.rHeaders.hasOwnProperty( 'content-type' ) ) this.o.rHeaders['Content-Type'] = 'application/x-www-form-urlencoded';
+					if ( !this.o.rHeaders.hasOwnProperty( 'content-length' ) ) this.o.rHeaders[ 'Content-Length' ] = Buffer.byteLength( this.o.data );
 				}
 			}
 
 			let req;
 			const options = Object.assign({
-				'host'		: this.url.hostname,
-				'port'		: this.url.port,
-				'path'    : this.url.pathname + this.url.search,
-				'method'  : this.m,
-				'headers' : this.rHeaders,
-				'protocol': this.url.protocol
-			}, this.coreOptions );
+				'host'		: this.o.url.hostname,
+				'port'		: this.o.url.port,
+				'path'    : this.o.url.pathname + this.o.url.search,
+				'method'  : this.o.m,
+				'headers' : this.o.rHeaders,
+				'protocol': this.o.url.protocol
+			}, this.o.coreOptions );
 
-			const resHandler = ( res ) => {
+			const resHandler = async( res ) => {
 				let stream = res;
 
-				if ( this.compressed ) {
+				if ( this.o.compressed ) {
 					if ( res.headers[ 'content-encoding' ] === 'gzip' ) stream = res.pipe( zlib.createGunzip() );
 					else if ( res.headers[ 'content-encoding' ] === 'deflate' ) stream = res.pipe( zlib.createInflate() );
 				}
 
 				let wumpRes;
 
-				if ( this.streamed ) resolve( stream );
+				if ( this.o.streamed ) resolve( stream );
 				else {
 					wumpRes = new WumpResponse( res );
 
+					if ( res.headers.hasOwnProperty('location') && this.o.follow ) {
+						this.o.url = ( new URL( res.headers[ 'location' ], this.o.url ) ).toString();
+						return await this( this.o );
+					}
+
 					stream.on( 'error', ( e ) => reject( e ) );
 					stream.on( 'data', ( c ) => wumpRes._addChunk( c ) );
-					stream.on( 'end', () => resolve( wumpRes ) );
+					stream.on( 'end', () => {	
+						if ( this.o.parse ) {
+							if ( this.o.parse === 'json' ) wumpRes.body = JSON.parse( wumpRes.body );
+							else if ( this.o.parse === 'text' ) wumpRes.body = wumpRes.body.toString();
+							else wumpRes.body = wumpRes.body;
+						}
+						
+						resolve( wumpRes );
+					});
 				}
 			};
 
-			if ( this.url.protocol === 'http:' ) req = http.request( options, resHandler );
-			else if (this.url.protocol === 'https:') req = https.request( options, resHandler );
-			else throw new Error( `Bad URL protocol: ${this.url.protocol}` );
+			if ( this.o.url.protocol === 'http:' ) req = http.request( options, resHandler );
+			else if (this.o.url.protocol === 'https:') req = https.request( options, resHandler );
+			else throw new Error( `Bad URL protocol: ${this.o.url.protocol}` );
 
-			if ( this.timeoutTime ) {
-				req.setTimeout( this.timeoutTime, () => {
+
+			if ( this.o.timeoutTime ) {
+				req.setTimeout( this.o.timeoutTime, () => {
 					req.abort();
-					if ( !this.streamed ) reject( new Error( 'Timeout reached' ) );
+					if ( !this.o.streamed ) reject( new Error( 'Timeout reached' ) );
 				});
 			}
 
 			req.on( 'error', ( e ) => reject( e ) );
-			if ( this.data ) req.write( this.data );
+			if ( this.o.data ) req.write( this.o.data );
 
 			req.end();
 		});

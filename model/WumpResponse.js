@@ -1,7 +1,7 @@
 module.exports = class WumpResponse {
 	constructor ( res ) {
 		this.body    = Buffer.alloc( 0 );
-		this.coreRes = res
+		this.coreRes = res;
 
 		this.headers = res.headers;
 		this.statusCode = res.statusCode;
@@ -11,4 +11,4 @@ module.exports = class WumpResponse {
 
 	text () { return this.body.toString(); }
 	json () { return JSON.parse( this.body ); }
-}
+};
