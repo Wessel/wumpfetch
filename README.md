@@ -34,7 +34,7 @@ const w = require( 'wumpfetch' );
 	const r = await w( 'https://my-site.com/postboi', 'POST' )
 		.query( 'video', 'wumpboye' )  			       // Add a query
 		.header({ 'Authorization': 'Pablito' })		       // Set a header
-		.post({ x: 'y', z: 1, beep: 'boop', chocolate: true }) // Send a json body
+		.body({ x: 'y', z: 1, beep: 'boop', chocolate: true }) // Send a json body
 		.timeout( 1000 )                                       // Set a 1s timeout
 		.send();
 
