@@ -1,11 +1,11 @@
-const qs      = require( 'querystring' );
-const zlib    = require( 'zlib' );
-const path    = require( 'path' );
-const http    = require( 'http' );
-const https   = require( 'https' );
-const { URL } = require( 'url' );
+const http                            = require( 'http' );
+const https                           = require( 'https' );
+const { URL }                         = require( 'url' );
+const { join }                        = require( 'path' );
+const { stringify }                   = require( 'querystring' );
+const { createGunzip, createInflate } = require( 'zlib' );
 
-const WumpResponse = require( path.join( __dirname, 'WumpResponse.js' ) );
+const WumpResponse = require( join( __dirname, 'WumpResponse.js' ) );
 
 const c = [ 'gzip', 'deflate' ];
 
@@ -20,7 +20,7 @@ module.exports = class WumpRequest {
 			'm'           : typeof o === 'string' ? o : obj && o.method ? o.method : 'GET',
 			'url'         : typeof url === 'string' ? new URL( url ) : obj && typeof o.url === 'string' ? new URL( o.url ) : url,
 			'SDA'         : obj && typeof o.sendDataAs === 'string' ? o.sendDataAs : undefined,
-			'data'        : obj && o.data ? o.data : obj && o.form ? qs.stringify( o.form ) : undefined,
+			'data'        : obj && o.data ? o.data : obj && o.form ? stringify( o.form ) : undefined,
 			'parse'       : obj && o.parse ? o.parse : undefined,
 			'follow'      : !!( obj && o.followRedirects ),
 			'streamed'    : !!( obj && o.streamed ),
@@ -44,7 +44,7 @@ module.exports = class WumpRequest {
 
 	body ( data, SA ) {
 		this.o.SDA  = typeof data === 'object' && !SA && !Buffer.isBuffer( data ) ? 'json' : ( SA ? SA.toLowerCase() : 'buffer' );
-		this.o.data = this.SDA === 'form' ? qs.stringify( data ) : ( this.SDA === 'json' ? JSON.stringify( data ) : data );
+		this.o.data = this.SDA === 'form' ? stringify( data ) : ( this.SDA === 'json' ? JSON.stringify( data ) : data );
 
 		return this;
 	}
@@ -63,7 +63,7 @@ module.exports = class WumpRequest {
 		return this;
 	}
 	
-	path ( p ) { this.o.url.pathname = path.join( this.o.url.pathname, p ); return this; }
+	path ( p ) { this.o.url.pathname = join( this.o.url.pathname, p ); return this; }
 	stream () { this.o.streamed = true; return this; }
 	option ( n, v ) { this.o.coreOptions[ n ] = v; return this; }
 	timeout ( timeout ) { this.o.timeoutTime = timeout; return this; }
@@ -94,8 +94,8 @@ module.exports = class WumpRequest {
 				let stream = res;
 
 				if ( this.o.compressed ) {
-					if ( res.headers[ 'content-encoding' ] === 'gzip' ) stream = res.pipe( zlib.createGunzip() );
-					else if ( res.headers[ 'content-encoding' ] === 'deflate' ) stream = res.pipe( zlib.createInflate() );
+					if ( res.headers[ 'content-encoding' ] === 'gzip' ) stream = res.pipe( createGunzip() );
+					else if ( res.headers[ 'content-encoding' ] === 'deflate' ) stream = res.pipe( createInflate() );
 				}
 
 				let wumpRes;
