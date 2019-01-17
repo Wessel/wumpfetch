@@ -19,9 +19,9 @@ module.exports = class WumpRequest {
 		this.o = {
 			'm'           : typeof o === 'string' ? o : obj && o.method ? o.method : 'GET',
 			'url'         : typeof url === 'string' ? new URL( url ) : obj && typeof o.url === 'string' ? new URL( o.url ) : url,
-			'SDA'         : obj && typeof o.sendDataAs === 'string' ? o.sendDataAs : null,
-			'data'        : obj && o.data ? o.data : obj && o.form ? qs.stringify( o.form ) : null,
-			'parse'       : obj && o.parse ? o.parse : null,
+			'SDA'         : obj && typeof o.sendDataAs === 'string' ? o.sendDataAs : undefined,
+			'data'        : obj && o.data ? o.data : obj && o.form ? qs.stringify( o.form ) : undefined,
+			'parse'       : obj && o.parse ? o.parse : undefined,
 			'follow'      : !!( obj && o.followRedirects ),
 			'streamed'    : !!( obj && o.streamed ),
 			'compressed'  : !!( obj && o.compressed ),
@@ -136,7 +136,7 @@ module.exports = class WumpRequest {
 			}
 
 			req.on( 'error', ( e ) => reject( e ) );
-			if ( this.o.data ) req.write( this.o.data );
+			if ( this.o.data ) req.write( JSON.stringify( this.o.data ) );
 
 			req.end();
 		});
