@@ -7,6 +7,7 @@ const { createGunzip, createInflate } = require( 'zlib' );
 
 const WumpResponse = require( join( __dirname, 'WumpResponse.js' ) );
 
+const w = require( join( __dirname, '..', 'createRequest.js' ) );
 const c = [ 'gzip', 'deflate' ];
 
 module.exports = class WumpRequest {
@@ -106,7 +107,7 @@ module.exports = class WumpRequest {
 
 					if ( res.headers.hasOwnProperty('location') && this.o.follow ) {
 						this.o.url = ( new URL( res.headers[ 'location' ], this.o.url ) ).toString();
-						return await this( this.o );
+						return await w( this.o );
 					}
 
 					stream.on( 'error', ( e ) => reject( e ) );
