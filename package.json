@@ -5,6 +5,7 @@
   "author": "Wessel \"wesselgame\" T <discord@go2it.eu>",
   "license": "MIT",
   "main": "createRequest.js",
+  "files": [ "LICENSE", "createRequest.js", "model/" ],
   "bugs": {
     "url": "https://www.github.com/PassTheWessel/wumpfetch/issues"
   },
