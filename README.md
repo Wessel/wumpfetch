@@ -69,4 +69,5 @@ const w = require( 'wumpfetch' );
 
 ### Why should i use wumpfetch?
 Wumpfetch is a lightweight and fast request library comparing to other packages such as request and node-fetch which are both around 1.5-4mb in size
+<br />
 [![install size](https://packagephobia.now.sh/badge?p=wumpfetch)](https://packagephobia.now.sh/result?p=wumpfetch) (6kb concatenated and 3.84kb minified, both in **/dest**)
