@@ -5,6 +5,7 @@
   "author": "Wessel \"wesselgame\" T <discord@go2it.eu>",
   "license": "MIT",
   "main": "createRequest.js",
+  "typings": "index.d.ts",
   "files": [
     "LICENSE",
     "createRequest.js",
