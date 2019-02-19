@@ -171,7 +171,7 @@ const WumpRequest = class WumpRequest {
 			}
 
 			req.on('error', (e) => reject(e));
-			if (this.o.data) req.write(JSON.stringify(this.o.data));
+			if (this.o.data) req.write(this.o.SDA === 'json' ? JSON.stringify(this.o.data) : this.o.data);
 
 			req.end();
 		});
