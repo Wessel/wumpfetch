@@ -8,7 +8,7 @@ module.exports = (url, method) => {
 };
 
 common.forEach((v) => {
-  module.exports[v.toLowerCase()] = (url, method = v) => {
-    return new request(url, method);
+  module.exports[v.toLowerCase()] = (url, method) => {
+    return new request(url, Object.assign({ method: v }, method));
   }
 });

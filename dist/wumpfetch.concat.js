@@ -187,6 +187,6 @@ module.exports = w;
 
 common.forEach((v) => {
   module.exports[v.toLowerCase()] = (url, method = v) => {
-    return new WumpRequest(url, method);
+    return new request(url, Object.assign({ method: v }, method));
   }
 });
