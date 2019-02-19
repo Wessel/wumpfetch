@@ -27,43 +27,45 @@ $ node test.js
 ```
 
 ### Sending data in a JSON body to a server
+#### Chaining methods
 ```js
-const w = require( 'wumpfetch' );
+const w = require('wumpfetch');
 
-;( async() => {
-	const r = await w( 'https://my-site.com/postboi', 'POST' )
-		.query( 'video', 'wumpboye' )  			       // Add a query
-		.header({ 'Authorization': 'Pablito' })		       // Set a header
+;(async() => {
+	const r = await w('https://my-site.com/postboi', 'POST')
+		.timeout( 1000 ) // Set a 1s timeout
+		.query('video', 'wumpboye') // Add a query
+		.header({ 'Authorization': 'Pablito' }) // Set a header
 		.body({ x: 'y', z: 1, beep: 'boop', chocolate: true }) // Send a json body
-		.timeout( 1000 )                                       // Set a 1s timeout
-		.send();
+		.send(); // Finish the chain by sending the rquest
 
-	console.log( r.json() );
+	console.log(r.json()); // Returns the response in a JSON format
 })();
 ```
-or
+#### Object
 ```js
-const w = require( 'wumpfetch' );
+const w = require('wumpfetch');
 
-;( async() => {
+;(async() => {
 	const r = await w({
 		url: 'https://my-site.com/postboi',
-		method: 'GET',
+		data: { 'bear': 'cop' },
+		method: 'POST',
 		headers: {
 			'Authorization': 'Pablo'
 		}
 	});
 
-	console.log( r.json() );
+	console.log(r.json());
 })();
 ```
 or
 ```js
-const w = require( 'wumpfetch' );
+const w = require('wumpfetch');
 
-;( async() => {
-	const r = await w( 'https://my-site.com/postboi', { method: 'GET' });
-	console.log( r.json() );
+;(async() => {
+	const r = await w('https://my-site.com/postboi', { method: 'GET' });
+	console.log(r.json());
 })();
 ```
 

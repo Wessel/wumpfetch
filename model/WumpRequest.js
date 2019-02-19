@@ -24,9 +24,9 @@ module.exports = class WumpRequest {
 			'data'       : obj && o.data ? o.data : obj && o.form ? stringify( o.form ) : undefined,
 			'parse'      : obj && o.parse ? o.parse : undefined,
 			'follow'     : !!( obj && o.followRedirects ),
+			'rHeaders'   : obj && typeof o.headers === 'object' ? o.headers : {},
 			'streamed'   : !!( obj && o.streamed ),
 			'compressed' : !!( obj && o.compressed ),
-			'rHeaders'   : obj && typeof o.headers === 'object' ? o.headers : {},
 			'timeoutTime': obj && typeof o.timeout === 'number' ? o.timeout : null,
 			'coreOptions': obj && typeof o.coreOptions === 'object' ? o.coreOptions : {}
 		};
