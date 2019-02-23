@@ -1,6 +1,6 @@
 {
   "name": "wumpfetch",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "🚀 A lightweight and fast Node.js HTTP Client",
   "author": "Wessel \"wesselgame\" T <discord@go2it.eu>",
   "license": "MIT",
@@ -13,12 +13,12 @@
     "index.d.ts"
   ],
   "bugs": {
-    "url": "https://www.github.com/PassTheWessel/wumpfetch/issues"
+    "url": "https://www.github.com/wumpusapp/wumpfetch/issues"
   },
-  "homepage": "https://www.github.com/PassTheWessel/wumpfetch#readme",
+  "homepage": "https://www.github.com/wumpusapp/wumpfetch#readme",
   "repository": {
     "type": "git",
-    "url": "https://www.github.com/PassTheWessel/wumpfetch"
+    "url": "https://www.github.com/wumpusapp/wumpfetch"
   },
   "keywords": [
     "http",
