@@ -20,7 +20,7 @@ module.exports = class WumpRequest {
 		this.o = {
 			'm'          : typeof o === 'string' ? o : obj && o.method ? o.method : 'GET',
 			'url'        : typeof url === 'string' ? new URL( url ) : obj && typeof o.url === 'string' ? new URL( o.url ) : url,
-			'SDA'        : obj && typeof o.sendDataAs === 'string' ? o.sendDataAs : undefined,
+			'SDA'        : obj && typeof o.sendDataAs === 'string' ? o.sendDataAs : obj && o.data && typeof o.data === 'object' ? 'json' : undefined,
 			'data'       : obj && o.data ? o.data : obj && o.form ? stringify( o.form ) : undefined,
 			'parse'      : obj && o.parse ? o.parse : undefined,
 			'follow'     : !!( obj && o.followRedirects ),
