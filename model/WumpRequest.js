@@ -151,13 +151,16 @@ module.exports = class WumpRequest {
 			}
 
 			req.on('error', (e) => reject(e));
-			if (this.o.SDA === 'json') {
-				req.write(JSON.stringify(this.o.data));
-			} else {
-				if (typeof this.o.data === 'object') {
+
+			if (this.o.data) {
+				if (this.o.SDA === 'json') {
 					req.write(JSON.stringify(this.o.data));
 				} else {
-					req.write(this.o.data);
+					if (typeof this.o.data === 'object') {
+						req.write(JSON.stringify(this.o.data));
+					} else {
+						req.write(this.o.data);
+					}
 				}
 			}
 			
