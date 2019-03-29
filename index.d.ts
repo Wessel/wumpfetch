@@ -45,7 +45,7 @@ declare namespace w {
      * @param url The url
      * @returns The request class
      */
-    export function options(url: string | w.URLOPtions): w.WumpRequest;
+    export function options(url: string | w.URLOptions): w.WumpRequest;
     
     /**
      * Declares an `TRACE` request
@@ -70,7 +70,7 @@ declare namespace w {
             coreOptions: object;
         };
 
-        constructor(url: string | wumpfetch.URLOptions, method?: w.URLMethods);
+        constructor(url: string | w.URLOptions, method?: w.URLMethods);
         public query(a: string | object, b?: string): this;
         public body(data: any, SA?: any): this;
         public header(a: string | object, b?: string): this;
