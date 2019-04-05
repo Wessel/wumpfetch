@@ -1,24 +1,21 @@
 {
   "name": "wumpfetch",
-  "version": "0.1.3",
-  "description": "🚀 A lightweight and fast Node.js HTTP Client",
+  "version": "0.2.0",
+  "description": "🚀 A lightweight and fast Node.JS HTTP Client",
   "author": "Wessel \"wesselgame\" T <discord@go2it.eu>",
   "license": "MIT",
-  "main": "createRequest.js",
-  "typings": "index.d.ts",
+  "main": "lib/index.js",
   "files": [
     "LICENSE",
-    "createRequest.js",
-    "model/",
-    "index.d.ts"
+    "lib/"
   ],
   "bugs": {
-    "url": "https://www.github.com/wumpusapp/wumpfetch/issues"
+    "url": "https://www.github.com/PassTheWessel/wumpfetch/issues"
   },
-  "homepage": "https://www.github.com/wumpusapp/wumpfetch#readme",
+  "homepage": "https://www.github.com/PassTheWessel/wumpfetch#readme",
   "repository": {
     "type": "git",
-    "url": "https://www.github.com/wumpusapp/wumpfetch"
+    "url": "https://www.github.com/PassTheWessel/wumpfetch"
   },
   "keywords": [
     "http",
@@ -31,11 +28,9 @@
     "patch",
     "lightweight"
   ],
-  "dependencies": {},
   "devDependencies": {
     "gulp": "^4.0.0",
     "gulp-concat": "^2.6.1",
-    "gulp-minify": "^3.1.0",
-    "lumah": "^0.0.2"
+    "gulp-minify": "^3.1.0"
   }
 }

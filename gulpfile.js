@@ -11,7 +11,7 @@ gulp.task('build:node', () => {
 
 gulp.task('concat', () => {
   return gulp
-  .src([ 'createRequest.js', 'model/**/*.js' ])
+  .src('lib/**/*.js')
   .pipe(concat('wumpfetch.concat.js'))
-  .pipe(gulp.dest('./dist'));
+  .pipe(gulp.dest('dist'));
 });

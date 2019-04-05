@@ -12,12 +12,12 @@ $ npm i wumpfetch # Install w/ NPM
 ## Usage
 ##### Code
 ```js
-const w = require( 'wumpfetch' );
+const w = require('wumpfetch');
 
-;( async() => {
-	const r = await w( 'https://aws.random.cat/meow' ).send();
+;(async() => {
+	const r = await w('https://aws.random.cat/meow').send();
 
-	console.log( r.json() );
+	console.log(r.json());
 });
 ```
 ##### Result
@@ -33,7 +33,7 @@ const w = require('wumpfetch');
 
 ;(async() => {
 	const r = await w('https://my-site.com/postboi', 'POST')
-		.timeout( 1000 ) // Set a 1s timeout
+		.timeout(1000) // Set a 1s timeout
 		.query('video', 'wumpboye') // Add a query
 		.header({ 'Authorization': 'Pablito' }) // Set a header
 		.body({ x: 'y', z: 1, beep: 'boop', chocolate: true }) // Send a json body
@@ -72,4 +72,4 @@ const w = require('wumpfetch');
 ### Why should i use wumpfetch?
 Wumpfetch is a lightweight and fast request library comparing to other packages such as request and node-fetch which are both around 1.5-4mb in size
 <br />
-[![install size](https://packagephobia.now.sh/badge?p=wumpfetch)](https://packagephobia.now.sh/result?p=wumpfetch) (6kb concatenated and 3.84kb minified, both in **/dest**)
+[![install size](https://packagephobia.now.sh/badge?p=wumpfetch)](https://packagephobia.now.sh/result?p=wumpfetch) (6.2kb concatenated and 4.4kb minified, both in **/dest**)
