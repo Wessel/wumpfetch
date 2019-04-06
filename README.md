@@ -1,7 +1,7 @@
 # Wumpfetch
 > A lightweight and fast Node.js HTTP client which can be used in various ways
 
-> [GitHub](https://www.github.com/PassTheWessel/wumpfetch) **|** [NPM](https://www.npmjs.com/package/wumpfetch)
+> [Typings](https://www.github.com/PassTheWessel/wumpfetch-typings) [GitHub](https://www.github.com/PassTheWessel/wumpfetch) **|** [NPM](https://www.npmjs.com/package/wumpfetch)
 
 ## Installing
 ```sh
