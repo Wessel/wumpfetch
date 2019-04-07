@@ -35,9 +35,8 @@ const settings = {
 // Fetch `url` and save it to `dump/<index>.<fileType>`
 const get = async(url, index) => {
   const req = await wump(url).send();
-  if (req.statusCode !== 200) {
-    return console.log(`[${process.name}] Failed on "${url}": ${req.statusCode}`)
-  } else {
+  if (req.statusCode !== 200) return console.log(`[${process.name}] Failed on "${url}": ${req.statusCode}`)
+  else {
     fs.writeFileSync(`dump/${index}.${settings.fileType}`, req.body);
     console.log(`[${process.name}] Successfully copied "${url}" to "dump/${index}.${settings.fileType}" in ${Date.now() - start}ms from queue`);  
   } 

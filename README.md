@@ -1,7 +1,7 @@
 # Wumpfetch
 > A lightweight and fast Node.js HTTP client which can be used in various ways
 
-> [Typings](https://www.github.com/PassTheWessel/wumpfetch-typings) [GitHub](https://www.github.com/PassTheWessel/wumpfetch) **|** [NPM](https://www.npmjs.com/package/wumpfetch)
+> [Typings](https://github.com/PassTheWessel/wumpfetch-typings) **|** [GitHub](https://github.com/PassTheWessel/wumpfetch) **|** [NPM](https://npmjs.com/package/wumpfetch)
 
 ## Installing
 ```sh
@@ -66,10 +66,10 @@ const w = require('wumpfetch');
 ;(async() => {
 	const r = await w('https://my-site.com/postboi', { method: 'GET' });
 	console.log(r.json());
-})();
+})();z
 ```
 
-### Why should i use wumpfetch?
-Wumpfetch is a lightweight and fast request library comparing to other packages such as request and node-fetch which are both around 1.5-4mb in size
-<br />
+### Why use Wumpfetch?
+Wumpfetch is a lightweight and fast request library comparing to other packages such as request which is 4.46mb!
+<br>
 [![install size](https://packagephobia.now.sh/badge?p=wumpfetch)](https://packagephobia.now.sh/result?p=wumpfetch) (6.2kb concatenated and 4.4kb minified, both in **/dest**)
