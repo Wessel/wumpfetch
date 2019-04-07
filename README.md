@@ -66,7 +66,7 @@ const w = require('wumpfetch');
 ;(async() => {
 	const r = await w('https://my-site.com/postboi', { method: 'GET' });
 	console.log(r.json());
-})();z
+})();
 ```
 
 ### Why use Wumpfetch?
