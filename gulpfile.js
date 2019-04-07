@@ -11,7 +11,7 @@ gulp.task('build:node', () => {
 
 gulp.task('concat', () => {
   return gulp
-  .src('lib/**/*.js')
-  .pipe(concat('wumpfetch.concat.js'))
-  .pipe(gulp.dest('dist'));
+    .src('lib/**/*.js')
+    .pipe(concat('wumpfetch.concat.js'))
+    .pipe(gulp.dest('dist'));
 });

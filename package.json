@@ -10,12 +10,12 @@
     "lib/"
   ],
   "bugs": {
-    "url": "https://www.github.com/PassTheWessel/wumpfetch/issues"
+    "url": "https://github.com/PassTheWessel/wumpfetch/issues"
   },
-  "homepage": "https://www.github.com/PassTheWessel/wumpfetch#readme",
+  "homepage": "https://github.com/PassTheWessel/wumpfetch#readme",
   "repository": {
     "type": "git",
-    "url": "https://www.github.com/PassTheWessel/wumpfetch"
+    "url": "https://github.com/PassTheWessel/wumpfetch"
   },
   "keywords": [
     "http",
@@ -32,8 +32,5 @@
     "gulp": "^4.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-minify": "^3.1.0"
-  },
-  "dependencies": {
-    "wumpfetch": "^0.2.0"
   }
 }
