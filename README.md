@@ -36,7 +36,7 @@ const w = require('wumpfetch');
 		.timeout(1000) // Set a 1s timeout
 		.query('video', 'wumpboye') // Add a query
 		.header({ 'Authorization': 'Pablito' }) // Set a header
-		.body({ x: 'y', z: 1, beep: 'boop', chocolate: true }) // Send a json body
+		.body({ x: 'y', z: 1, beep: 'boop', chocolate: true }) // Send a JSON body
 		.send(); // Finish the chain by sending the rquest
 
 	console.log(r.json()); // Returns the response in a JSON format
@@ -51,9 +51,7 @@ const w = require('wumpfetch');
 		url: 'https://my-site.com/postboi',
 		data: { 'bear': 'cop' },
 		method: 'POST',
-		headers: {
-			'Authorization': 'Pablo'
-		}
+		headers: { 'Authorization': 'Pablo' }
 	});
 
 	console.log(r.json());
@@ -68,8 +66,3 @@ const w = require('wumpfetch');
 	console.log(r.json());
 })();
 ```
-
-### Why use Wumpfetch?
-Wumpfetch is a lightweight and fast request library comparing to other packages such as request which is 4.46mb!
-<br>
-[![install size](https://packagephobia.now.sh/badge?p=wumpfetch)](https://packagephobia.now.sh/result?p=wumpfetch) (6.2kb concatenated and 4.4kb minified, both in **/dest**)

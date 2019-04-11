@@ -1,17 +1,17 @@
-const gulp = require('gulp');
-const minify = require('gulp-minify');
-const concat = require('gulp-concat');
+const g = require('gulp');
+const m = require('gulp-minify');
+const c = require('gulp-concat');
 
-gulp.task('build:node', () => {
-  return gulp
+g.task('build:node', () => {
+  return g
     .src('dist/wumpfetch.concat.js')
-    .pipe(minify({ noSource: true, ext: { min: '.min.js' } }))
-    .pipe(gulp.dest('dist'));
+    .pipe(m({ noSource: true, ext: { min: '.min.js' } }))
+    .pipe(g.dest('dist'));
 });
 
-gulp.task('concat', () => {
-  return gulp
+g.task('concat', () => {
+  return g
     .src('lib/**/*.js')
-    .pipe(concat('wumpfetch.concat.js'))
-    .pipe(gulp.dest('dist'));
+    .pipe(c('wumpfetch.concat.js'))
+    .pipe(g.dest('dist'));
 });
