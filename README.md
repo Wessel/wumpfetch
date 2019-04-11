@@ -66,3 +66,18 @@ const w = require('wumpfetch');
 	console.log(r.json());
 })();
 ```
+
+## Projects using Wumpfetch
+
+> If you want your own project listed, either create a pull request or an issue with the following content:
+> * Package name
+> * NPM link
+> * a **short** description of your package
+> * Packagephobia link
+> * GitHub repository link
+
+| Project Name | Short description | Links
+|----------|----------|:-------------:
+| boats.js | The official discord.boats API wrapper for NodeJS | [🔩](https://npmjs.com/package/boats.js) [⚖](https://packagephobia.now.sh/result?p=boats.js) [📂](https://github.com/DiscordBoats/boats.js)
+| qtradio.js | API wrapper for qtradio.moe made in JavaScript | [🔩](https://npmjs.com/package/qtradio.js) [⚖](https://packagephobia.now.sh/result?p=qtradio.js) [📂](https://github.com/auguwu/qtradio.js)
+| cafebot.js | CafeBot.xyz API Wrapper made in JS  | [🔩](https://npmjs.com/package/cafebot.js) [⚖](https://packagephobia.now.sh/result?p=cafebot.js) [📂](https://github.com/DopeDealers/cafebot.js)
