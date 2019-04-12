@@ -75,9 +75,10 @@ const w = require('wumpfetch');
 > * a **short** description of your package
 > * Packagephobia link
 > * GitHub repository link
+> * *Optional*: A website link
 
 | Project Name | Short description | Links
 |----------|----------|:-------------:
-| boats.js | The official discord.boats API wrapper for NodeJS | [🔩](https://npmjs.com/package/boats.js) [⚖](https://packagephobia.now.sh/result?p=boats.js) [📂](https://github.com/DiscordBoats/boats.js)
-| qtradio.js | API wrapper for qtradio.moe made in JavaScript | [🔩](https://npmjs.com/package/qtradio.js) [⚖](https://packagephobia.now.sh/result?p=qtradio.js) [📂](https://github.com/auguwu/qtradio.js)
-| cafebot.js | CafeBot.xyz API Wrapper made in JS  | [🔩](https://npmjs.com/package/cafebot.js) [⚖](https://packagephobia.now.sh/result?p=cafebot.js) [📂](https://github.com/DopeDealers/cafebot.js)
+| boats.js | The official discord.boats API wrapper for NodeJS | [🔩](https://npmjs.com/package/boats.js) [⚖](https://packagephobia.now.sh/result?p=boats.js) [📂](https://github.com/DiscordBoats/boats.js) [👾](https://discord.boats/?referrer=wumpfetch)
+| qtradio.js | API wrapper for qtradio.moe made in JavaScript | [🔩](https://npmjs.com/package/qtradio.js) [⚖](https://packagephobia.now.sh/result?p=qtradio.js) [📂](https://github.com/auguwu/qtradio.js) [👾](https://qtradio.moe/?referrer=wumpfetch)
+| cafebot.js | CafeBot.xyz API Wrapper made in JS  | [🔩](https://npmjs.com/package/cafebot.js) [⚖](https://packagephobia.now.sh/result?p=cafebot.js) [📂](https://github.com/DopeDealers/cafebot.js) [👾](https://cafebot.xyz/?referrer=wumpfetch)
