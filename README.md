@@ -1,4 +1,6 @@
 # Wumpfetch
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPassTheWessel%2Fwumpfetch.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FPassTheWessel%2Fwumpfetch?ref=badge_shield)
+
 > A lightweight and fast Node.js HTTP client which can be used in various ways
 
 > [Typings](https://github.com/PassTheWessel/wumpfetch-typings) **|** [GitHub](https://github.com/PassTheWessel/wumpfetch) **|** [NPM](https://npmjs.com/package/wumpfetch)
@@ -82,3 +84,7 @@ const w = require('wumpfetch');
 | boats.js | The official discord.boats API wrapper for NodeJS | [🔩](https://npmjs.com/package/boats.js) [⚖](https://packagephobia.now.sh/result?p=boats.js) [📂](https://github.com/DiscordBoats/boats.js) [👾](https://discord.boats/?referrer=wumpfetch)
 | qtradio.js | API wrapper for qtradio.moe made in JavaScript | [🔩](https://npmjs.com/package/qtradio.js) [⚖](https://packagephobia.now.sh/result?p=qtradio.js) [📂](https://github.com/auguwu/qtradio.js) [👾](https://qtradio.moe/?referrer=wumpfetch)
 | cafebot.js | CafeBot.xyz API Wrapper made in JS  | [🔩](https://npmjs.com/package/cafebot.js) [⚖](https://packagephobia.now.sh/result?p=cafebot.js) [📂](https://github.com/DopeDealers/cafebot.js) [👾](https://cafebot.xyz/?referrer=wumpfetch)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPassTheWessel%2Fwumpfetch.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FPassTheWessel%2Fwumpfetch?ref=badge_large)
