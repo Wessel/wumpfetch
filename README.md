@@ -1,17 +1,25 @@
-# Wumpfetch
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPassTheWessel%2Fwumpfetch.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FPassTheWessel%2Fwumpfetch?ref=badge_shield)
+<img src="https://wessel.meek.moe/wumpfetch/logo.svg" align="left" style="border-radius: 5%;" width="192px" height="192px"/>
+<img align="left" width="0" height="192px" hspace="10"/>
 
-> A lightweight and fast Node.js HTTP client which can be used in various ways
+> <a href="https://github.com/PassTheWessel/wumpfetch">Wumpfetch</a> - A fast and easy to use HTTP client
 
-> [Typings](https://github.com/PassTheWessel/wumpfetch-typings) **|** [GitHub](https://github.com/PassTheWessel/wumpfetch) **|** [NPM](https://npmjs.com/package/wumpfetch)
+[![MIT License](https://img.shields.io/badge/license-MIT-007EC7.svg?style=flat-square)](/LICENSE) [![Travis Build Status](https://img.shields.io/travis/com/PassTheWessel/wumpfetch.svg?style=flat-square)](https://travis-ci.com/PassTheWessel/wumpfetch)
+
+
+Wumpfetch is a fast, lightweight and easy to use HTTP client for Node.JS. 
+
+> [`Typings`](https://github.com/PassTheWessel/wumpfetch-typings) **|** [`GitHub`](https://github.com/PassTheWessel/wumpfetch) **|** [`NPM`](https://npmjs.com/package/wumpfetch)
+
+<br>
 
 ## Installing
+Wumpfetch can be installed with any package manager that supports the NPM registry, but the ones listed below are the most used ones.
 ```sh
-$ yarn add wumpfetch # Install w/ Yarn (the superior package manager)
+$ yarn add wumpfetch # Install w/ Yarn
 $ npm i wumpfetch # Install w/ NPM
 ```
 
-## Usage
+## Example usage
 ##### Code
 ```js
 const w = require('wumpfetch');
@@ -29,12 +37,46 @@ $ node test.js
 ```
 
 ### Sending data in a JSON body to a server
+
+#### Getting a response from a REST API
+**Code**:
+```js
+const w = require('wumpfetch');
+
+// Using an URL and custom options
+;(async() => {
+  let req = await w('https://aws.random.cat/meow', {
+    headers: {
+      'User-Agent': 'Project/0.0.1'
+    }
+  });
+  // Only URL
+  req = await w('https://aws.random.cat/meow');
+  // Only options
+  req = await w({
+    url: 'https://aws.random.cat/meow',
+    headers: {
+      'User-Agent': 'Project/0.0.1'
+    }
+  });
+  
+  console.log(req.json());
+})();
+```
+
+**Result**:
+```sh
+$ node test.js
+{ file: 'https://purr.objects-us-east-1.dream.io/i/100_-_rURSo7L.gif' }
+```
+
 #### Chaining methods
+You can also chain methods by adding `chaining: true` to `options`
 ```js
 const w = require('wumpfetch');
 
 ;(async() => {
-	const r = await w('https://my-site.com/postboi', 'POST')
+	const r = await w('https://my-site.com/postboi', { method: 'POST', chaining: true })
 		.timeout(1000) // Set a 1s timeout
 		.query('video', 'wumpboye') // Add a query
 		.header({ 'Authorization': 'Pablito' }) // Set a header
@@ -44,36 +86,14 @@ const w = require('wumpfetch');
 	console.log(r.json()); // Returns the response in a JSON format
 })();
 ```
-#### Object
-```js
-const w = require('wumpfetch');
-
-;(async() => {
-	const r = await w({
-		url: 'https://my-site.com/postboi',
-		data: { 'bear': 'cop' },
-		method: 'POST',
-		headers: { 'Authorization': 'Pablo' }
-	});
-
-	console.log(r.json());
-})();
-```
-or
-```js
-const w = require('wumpfetch');
-
-;(async() => {
-	const r = await w('https://my-site.com/postboi', { method: 'GET' });
-	console.log(r.json());
-})();
-```
 
 ## Projects using Wumpfetch
 
 > If you want your own project listed, either create a pull request or an issue with the following content:
-> * Package name
+> * Project name
 > * a **short** description of your package
+> 
+> Also add the following if your project is a package/module/library:
 > * NPM link (🔩)
 > * Packagephobia link (⚖)
 > * GitHub repository link (📂)
