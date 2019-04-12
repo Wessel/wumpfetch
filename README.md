@@ -71,11 +71,11 @@ const w = require('wumpfetch');
 
 > If you want your own project listed, either create a pull request or an issue with the following content:
 > * Package name
-> * NPM link
 > * a **short** description of your package
-> * Packagephobia link
-> * GitHub repository link
-> * *Optional*: A website link
+> * NPM link (🔩)
+> * Packagephobia link (⚖)
+> * GitHub repository link (📂)
+> * *Optional*: A website link (👾)
 
 | Project Name | Short description | Links
 |----------|----------|:-------------:
