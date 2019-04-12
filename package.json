@@ -1,6 +1,6 @@
 {
   "name": "wumpfetch",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "🚀 A lightweight and fast Node.JS HTTP Client",
   "author": "Wessel \"wesselgame\" T <discord@go2it.eu>",
   "license": "MIT",
