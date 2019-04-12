@@ -5,8 +5,8 @@ console.log(`Using wumpfetch v${wump.version} [${wump.userAgent}]\n\n`);
 
 ;(async() => {
   const requests = [
-    await wump({ url: 'https://jsonplaceholder.typicode.com/todos/1', parse: 'json', chaining: true }).send(),
-    await wump('https://jsonplaceholder.typicode.com/todos/1')
+    await wump({ url: 'https://jsonplaceholder.typicode.com/todos/1', parse: 'json' }).send(),
+    await wump('https://jsonplaceholder.typicode.com/todos/1', { chaining: false })
   ];
 
   console.log(`Test 1: \n${util.inspect(requests[0].body)}\n\n`);

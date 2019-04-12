@@ -1,4 +1,4 @@
-<img src="https://wessel.meek.moe/wumpfetch/logo.svg" align="left" style="border-radius: 5%;" width="192px" height="192px"/>
+<img src="https://wessel.meek.moe/wumpfetch/logo.svg" align="left" width="180px" height="180px"/>
 <img align="left" width="0" height="192px" hspace="10"/>
 
 > <a href="https://github.com/PassTheWessel/wumpfetch">Wumpfetch</a> - A fast and easy to use HTTP client
@@ -46,15 +46,17 @@ const w = require('wumpfetch');
 // Using an URL and custom options
 ;(async() => {
   let req = await w('https://aws.random.cat/meow', {
+    chaining: false,
     headers: {
       'User-Agent': 'Project/0.0.1'
     }
   });
   // Only URL
-  req = await w('https://aws.random.cat/meow');
+  req = await w('https://aws.random.cat/meow', { chaining: false });
   // Only options
   req = await w({
     url: 'https://aws.random.cat/meow',
+    chaining: false,
     headers: {
       'User-Agent': 'Project/0.0.1'
     }
@@ -76,7 +78,7 @@ You can also chain methods by adding `chaining: true` to `options`
 const w = require('wumpfetch');
 
 ;(async() => {
-	const r = await w('https://my-site.com/postboi', { method: 'POST', chaining: true })
+	const r = await w('https://my-site.com/postboi', { method: 'POST' })
 		.timeout(1000) // Set a 1s timeout
 		.query('video', 'wumpboye') // Add a query
 		.header({ 'Authorization': 'Pablito' }) // Set a header
