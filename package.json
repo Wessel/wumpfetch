@@ -5,10 +5,6 @@
   "author": "Wessel \"wesselgame\" T <discord@go2it.eu>",
   "license": "MIT",
   "main": "lib/index.js",
-  "files": [
-    "LICENSE",
-    "lib/"
-  ],
   "bugs": {
     "url": "https://github.com/PassTheWessel/wumpfetch/issues"
   },
@@ -16,6 +12,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/PassTheWessel/wumpfetch"
+  },
+  "scripts": {
+    "test": "cd __test__ && node main.js"
   },
   "keywords": [
     "http",

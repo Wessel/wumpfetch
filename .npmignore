@@ -1,0 +1,11 @@
+dist/
+docs/
+__test__/
+examples/
+node_modules/
+
+README.md
+yarn.lock
+index.d.ts
+.gitignore
+gulpfile.js
