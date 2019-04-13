@@ -3,56 +3,55 @@
 
 import { URL } from 'url';
 
-/** The package wumpfetch */
 declare namespace w {
     /**
      * Declares a `GET` request
      * @param url The url of the request
      * @returns The request to execute
      */
-    export function get(url: string | w.URLOptions): w.WumpRequest;
+    export function get(url: string | w.URLOptions, method?: w.URLMethods | w.URLOptions): w.WumpRequest;
 
     /**
      * Declares a `POST` request
      * @param url The url of the request
      * @returns The request to execute
      */
-    export function post(url: string | w.URLOptions): w.WumpRequest;
+    export function post(url: string | w.URLOptions, method?: w.URLMethods | w.URLOptions): w.WumpRequest;
 
     /**
      * Declares a `PUT` request
      * @param url The url of the request
      * @returns The request class
      */
-    export function put(url: string | w.URLOptions): w.WumpRequest;
+    export function put(url: string | w.URLOptions, method?: w.URLMethods | w.URLOptions): w.WumpRequest;
 
     /**
      * Declares a `PATCH` request
      * @param url The url
      * @returns The request class
      */
-    export function patch(url: string | w.URLOptions): w.WumpRequest;
+    export function patch(url: string | w.URLOptions, method?: w.URLMethods | w.URLOptions): w.WumpRequest;
     
     /**
      * Declares a `CONNECT` request
      * @param url The url
      * @returns The request class
      */
-    export function connect(url: string | w.URLOptions): w.WumpRequest;
+    export function connect(url: string | w.URLOptions, method?: w.URLMethods | w.URLOptions): w.WumpRequest;
     
     /**
      * Declares an `OPTIONS` request
      * @param url The url
      * @returns The request class
      */
-    export function options(url: string | w.URLOptions): w.WumpRequest;
+    export function options(url: string | w.URLOptions, method?: w.URLMethods | w.URLOptions): w.WumpRequest;
     
     /**
      * Declares an `TRACE` request
      * @param url The url
      * @returns The request class
      */
-    export function trace(url: string | w.URLOptions): w.WumpRequest;
+    export function trace(url: string | w.URLOptions, method?: w.URLMethods | w.URLOptions): w.WumpRequest;
 
     /** The request class */
     export class WumpRequest {
@@ -64,13 +63,14 @@ declare namespace w {
             parse: any;
             follow: boolean;
             streamed: boolean;
+            chaining: boolean;
             compressed: boolean;
             rHeaders: { [x: string]: string; }
             timeoutTime: number;
             coreOptions: object;
         };
 
-        constructor(url: string | w.URLOptions, method?: w.URLMethods);
+        constructor(url: string | w.URLOptions, method?: w.URLMethods | w.URLOptions);
         public query(a: string | object, b?: string): this;
         public body(data: any, SA?: any): this;
         public header(a: string | object, b?: string): this;
@@ -92,21 +92,22 @@ declare namespace w {
         private _addChunk(chunk: any): void;
         public text(): string;
         public json(): NormalObject;
+        public json<T>(): T;
     }
 
     export type KVObject = { [x: string]: string };
     export type NormalObject = { [x: string]: any };
     export type URLMethods = 'GET' | 'POST' | 'PUT' | 'PATCH' | "DELETE" | 'CONNECT' | 'OPTIONS' | 'TRACE';
-    // wessel add more options when needed
     export interface URLOptions {
         url: string;
         method: URLMethods;
         data?: NormalObject;
         headers?: KVObject;
+        chain?: boolean;
+        parse?: 'json' | 'buffer' | 'form';
     }
 }
 
-declare module 'wumpfetch' {
-    export function w(url: string | w.URLOptions): w.WumpRequest;
-    export = w;
-}
+declare function w(url: string | w.URLOptions, method?: w.URLMethods | w.URLOptions): w.WumpRequest;
+
+export = w;
