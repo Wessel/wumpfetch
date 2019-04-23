@@ -18,6 +18,16 @@ $ yarn add wumpfetch # Install w/ Yarn
 $ npm i wumpfetch # Install w/ NPM
 ```
 
+## Benchmarking
+> **URL used for benchmarks**: [https://httpbin.org/get](https://httpbin.org/get)
+
+| Library    | 1 Request | 10 Requests | 100 Requests |
+|------------|-----------|-------------|--------------|
+| Wumpfetch  | 429.571ms | 4135.043ms  | 42182.140ms  |
+| got 		   | 420.319ms | 4163.749ms  | 43634.187ms  |
+| axios      | 437.274ms | 4168.437ms  | 47437.898ms  |
+| node-fetch | 543.618ms | 4217.365ms  | 43813.187ms  |
+
 ## Documentation
 Documentation can be found at [https://github.com/PassTheWessel/wumpfetch/wiki](https://github.com/PassTheWessel/wumpfetch/wiki)
 
