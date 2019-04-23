@@ -1,10 +1,15 @@
 {
   "name": "wumpfetch",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "description": "🚀 A lightweight and fast Node.JS HTTP Client",
   "author": "Wessel \"wesselgame\" T <discord@go2it.eu>",
   "license": "MIT",
   "main": "lib/index.js",
+  "typings": "index.d.ts",
+  "files": [
+    "lib/",
+    "index.d.ts"
+  ],
   "bugs": {
     "url": "https://github.com/PassTheWessel/wumpfetch/issues"
   },
