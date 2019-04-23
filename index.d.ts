@@ -103,7 +103,7 @@ declare namespace w {
         method: URLMethods;
         data?: NormalObject;
         headers?: KVObject;
-        chain?: boolean;
+        chaining?: boolean;
         parse?: 'json' | 'buffer' | 'form';
     }
 }
