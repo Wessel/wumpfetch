@@ -106,8 +106,17 @@ declare namespace w {
         chaining?: boolean;
         parse?: 'json' | 'buffer' | 'form';
     }
+
+    export interface MethodOptions {
+        url?: string;
+        method?: URLMethods;
+        data?: NormalObject;
+        headers?: KVObject;
+        chaining?: boolean;
+        parse?: 'json' | 'buffer' | 'form';
+    }
 }
 
-declare function w(url: string | w.URLOptions, method?: w.URLMethods | w.URLOptions): w.WumpRequest;
+declare function w(url: string | w.URLOptions, method?: w.URLMethods | w.MethodOptions): w.WumpRequest;
 
 export = w;
