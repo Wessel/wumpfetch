@@ -142,7 +142,7 @@ const WumpRequest = class WumpRequest {
 
 				if (this.o.compressed) {
 					if (res.headers['content-encoding'] === 'gzip') stream = res.pipe(createGunzip());
-					else if (res.headers[ 'content-encoding'] === 'deflate') stream = res.pipe(createInflate());
+					else if (res.headers['content-encoding'] === 'deflate') stream = res.pipe(createInflate());
 				}
 
 				let wumpRes;
