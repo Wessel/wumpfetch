@@ -1,64 +1,18 @@
-// Typings for component: "wumpfetch"
-// Typings created by auguwu, project made by Wesselgame / PassTheWessel
+declare module 'wumpfetch' {
+    import { URL } from 'url';
+    import { IncomingMessage, ServerResponse } from 'http';
 
-import { URL } from 'url';
-
-declare namespace w {
-    /**
-     * Declares a `GET` request
-     * @param url The url of the request
-     * @returns The request to execute
-     */
-    export function get(url: string | w.URLOptions, method?: w.URLMethods | w.URLOptions): w.WumpRequest;
-
-    /**
-     * Declares a `POST` request
-     * @param url The url of the request
-     * @returns The request to execute
-     */
-    export function post(url: string | w.URLOptions, method?: w.URLMethods | w.URLOptions): w.WumpRequest;
-
-    /**
-     * Declares a `PUT` request
-     * @param url The url of the request
-     * @returns The request class
-     */
-    export function put(url: string | w.URLOptions, method?: w.URLMethods | w.URLOptions): w.WumpRequest;
-
-    /**
-     * Declares a `PATCH` request
-     * @param url The url
-     * @returns The request class
-     */
-    export function patch(url: string | w.URLOptions, method?: w.URLMethods | w.URLOptions): w.WumpRequest;
-    
-    /**
-     * Declares a `CONNECT` request
-     * @param url The url
-     * @returns The request class
-     */
-    export function connect(url: string | w.URLOptions, method?: w.URLMethods | w.URLOptions): w.WumpRequest;
-    
-    /**
-     * Declares an `OPTIONS` request
-     * @param url The url
-     * @returns The request class
-     */
-    export function options(url: string | w.URLOptions, method?: w.URLMethods | w.URLOptions): w.WumpRequest;
-    
-    /**
-     * Declares an `TRACE` request
-     * @param url The url
-     * @returns The request class
-     */
-    export function trace(url: string | w.URLOptions, method?: w.URLMethods | w.URLOptions): w.WumpRequest;
-
-    /** The request class */
+    export function get(url: string | URLOptions, method?: URLMethod | MethodOptions): WumpRequest;
+    export function post(url: string | URLOptions, method?: URLMethod | MethodOptions): WumpRequest;
+    export function put(url: string | URLOptions, method?: URLMethod | MethodOptions): WumpRequest;
+    export function patch(url: string | URLOptions, method?: URLMethod | MethodOptions): WumpRequest;
+    export function connect(url: string | URLOptions, method?: URLMethod | MethodOptions): WumpRequest;
+    export function options(url: string | URLOptions, method?: URLMethod | MethodOptions): WumpRequest;
+    export function trace(url: string | URLOptions, method?: URLMethod | URLOptions): WumpRequest;
     export class WumpRequest {
         public o: {
             m: string;
             url: URL;
-            SDA: any;
             data: any;
             parse: any;
             follow: boolean;
@@ -69,8 +23,7 @@ declare namespace w {
             timeoutTime: number;
             coreOptions: object;
         };
-
-        constructor(url: string | w.URLOptions, method?: w.URLMethods | w.URLOptions);
+        constructor(url: string | URLOptions, method?: URLMethod | MethodOptions);
         public query(a: string | object, b?: string): this;
         public body(data: any, SA?: any): this;
         public header(a: string | object, b?: string): this;
@@ -79,13 +32,11 @@ declare namespace w {
         public stream(): this;
         public option(n: string, v: string): this;
         public timeout(timeout: number): this;
-        public send(): Promise<w.WumpResponse>;
+        public send(): Promise<WumpResponse>;
     }
-
-    /** The response class */
     export class WumpResponse {
-        public body: any;
-        public coreRes: any;
+        public body: Buffer | string;
+        public coreRes: ServerResponse;
         public headers: { [x: string]: string };
         public statusCode: number;
         constructor(res: any);
@@ -94,10 +45,9 @@ declare namespace w {
         public json(): NormalObject;
         public json<T>(): T;
     }
-
     export type KVObject = { [x: string]: string };
     export type NormalObject = { [x: string]: any };
-    export type URLMethods = 'GET' | 'POST' | 'PUT' | 'PATCH' | "DELETE" | 'CONNECT' | 'OPTIONS' | 'TRACE';
+    export type URLMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | "DELETE" | 'CONNECT' | 'OPTIONS' | 'TRACE';
     export interface URLOptions {
         url: string;
         method: URLMethods;
@@ -106,17 +56,12 @@ declare namespace w {
         chaining?: boolean;
         parse?: 'json' | 'buffer' | 'form';
     }
-
     export interface MethodOptions {
-        url?: string;
         method?: URLMethods;
         data?: NormalObject;
         headers?: KVObject;
         chaining?: boolean;
         parse?: 'json' | 'buffer' | 'form';
     }
+    export default function w(url: string | URLOptions, method?: URLMethod | MethodOptions): WumpRequest;
 }
-
-declare function w(url: string | w.URLOptions, method?: w.URLMethods | w.MethodOptions): w.WumpRequest;
-
-export = w;
