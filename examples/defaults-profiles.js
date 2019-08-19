@@ -11,7 +11,7 @@ if (Number(process.version.slice(1).split('.')[0]) < 8) throw new Error('Node 8.
 const w = require('../lib');
 
 process.name = 'Defaults or Profiles';
-process.hash = string(8);
+process.hash = String(8);
 
 // mmm
 w.addDefaults({

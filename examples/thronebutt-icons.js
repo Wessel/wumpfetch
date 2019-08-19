@@ -22,7 +22,7 @@ const string = (iterations = 1, seed = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn
 };
 // Set process values
 process.name = 'Thronebutt';
-process.hash = string(8);
+process.hash = String(8);
 // Define some basic stuff
 const start = Date.now();
 const settings = {
