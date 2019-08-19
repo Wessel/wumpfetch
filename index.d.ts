@@ -2,6 +2,12 @@ declare module 'wumpfetch' {
     import { URL } from 'url';
     import { IncomingMessage, ServerResponse } from 'http';
 
+    export const userAgent: string;
+    export const version: string;
+    export const defaults: URLOptions;
+    export function setDefaults(data: URLOptions): void;
+    export function getProfile(name: string): URLOptions;
+    export function setProfile(name: string, data: URLOptions): URLOptions;
     export function get(url: string | URLOptions, method?: URLMethod | MethodOptions): WumpRequest;
     export function post(url: string | URLOptions, method?: URLMethod | MethodOptions): WumpRequest;
     export function put(url: string | URLOptions, method?: URLMethod | MethodOptions): WumpRequest;
@@ -50,18 +56,38 @@ declare module 'wumpfetch' {
     export type URLMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | "DELETE" | 'CONNECT' | 'OPTIONS' | 'TRACE';
     export interface URLOptions {
         url: string;
-        method: URLMethods;
+        method: URLMethod;
         data?: NormalObject;
         headers?: KVObject;
-        chaining?: boolean;
         parse?: 'json' | 'buffer' | 'form';
+        core?: NormalObject;
+        timeout?: number;
+        compressed?: boolean;
+        streamed?: boolean;
+        followRedirects?: any;
+        chain?: boolean;
     }
     export interface MethodOptions {
-        method?: URLMethods;
         data?: NormalObject;
         headers?: KVObject;
-        chaining?: boolean;
+        chain?: boolean;
         parse?: 'json' | 'buffer' | 'form';
+        core?: NormalObject;
+        timeout?: number;
+        compressed?: boolean;
+        streamed?: boolean;
+        followRedirects?: any;
+    }
+    export interface ProfileData {
+        data?: NormalObject;
+        headers?: KVObject;
+        parse?: 'json' | 'buffer' | 'form';
+        core?: NormalObject;
+        timeout?: number;
+        compressed?: boolean;
+        streamed?: boolean;
+        followRedirects?: any;
+        chain?: boolean;
     }
     export default function w(url: string | URLOptions, method?: URLMethod | MethodOptions): WumpRequest;
 }
