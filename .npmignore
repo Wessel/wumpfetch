@@ -1,9 +1,0 @@
-dist/
-__test__/
-examples/
-node_modules/
-
-yarn.lock
-index.d.ts
-.gitignore
-gulpfile.js

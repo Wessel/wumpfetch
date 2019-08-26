@@ -1,7 +1,7 @@
 {
   "name": "wumpfetch",
-  "version": "0.2.13",
-  "description": "🚀 A lightweight and fast Node.JS HTTP Client",
+  "version": "0.3.0",
+  "description": "🚀🔗 A modern, lightweight, fast and easy to use Node.js HTTP client",
   "author": "Wessel \"wesselgame\" T <discord@go2it.eu>",
   "license": "MIT",
   "main": "lib/index.js",
@@ -19,7 +19,7 @@
     "url": "https://github.com/PassTheWessel/wumpfetch"
   },
   "scripts": {
-    "test": "cd __test__ && node main.js"
+    "test": "cd tests && node main.js"
   },
   "keywords": [
     "http",

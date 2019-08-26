@@ -1,67 +1,80 @@
 declare module 'wumpfetch' {
-    import { URL } from 'url';
-    import { IncomingMessage, ServerResponse } from 'http';
+  import { URL } from 'url';
+  import { IncomingMessage, ServerResponse } from 'http';
 
-    export function get(url: string | URLOptions, method?: URLMethod | MethodOptions): WumpRequest;
-    export function post(url: string | URLOptions, method?: URLMethod | MethodOptions): WumpRequest;
-    export function put(url: string | URLOptions, method?: URLMethod | MethodOptions): WumpRequest;
-    export function patch(url: string | URLOptions, method?: URLMethod | MethodOptions): WumpRequest;
-    export function connect(url: string | URLOptions, method?: URLMethod | MethodOptions): WumpRequest;
-    export function options(url: string | URLOptions, method?: URLMethod | MethodOptions): WumpRequest;
-    export function trace(url: string | URLOptions, method?: URLMethod | URLOptions): WumpRequest;
-    export class WumpRequest {
-        public o: {
-            m: string;
-            url: URL;
-            data: any;
-            parse: any;
-            follow: boolean;
-            streamed: boolean;
-            chaining: boolean;
-            compressed: boolean;
-            rHeaders: { [x: string]: string; }
-            timeoutTime: number;
-            coreOptions: object;
-        };
-        constructor(url: string | URLOptions, method?: URLMethod | MethodOptions);
-        public query(a: string | object, b?: string): this;
-        public body(data: any, SA?: any): this;
-        public header(a: string | object, b?: string): this;
-        public compress(): this;
-        public path(p: string): this;
-        public stream(): this;
-        public option(n: string, v: string): this;
-        public timeout(timeout: number): this;
-        public send(): Promise<WumpResponse>;
+  export default function w(url: string | ReqOptions, method?: string | ReqOptions): WumpRequest;
+
+  export const version: string;
+  export const userAgent: string;
+
+  export function get(url: string | URL | ReqOptions, method?: string | ReqOptions): WumpRequest;
+  export function put(url: string | URL | ReqOptions, method?: string | ReqOptions): WumpRequest;
+  export function post(url: string | URL | ReqOptions, method?: string | ReqOptions): WumpRequest;
+  export function head(url: string | URL | ReqOptions, method?: string | ReqOptions): WumpRequest;
+  export function patch(url: string | URL | ReqOptions, method?: string | ReqOptions): WumpRequest;
+  export function trace(url: string | URL | ReqOptions, method?: string | ReqOptions): WumpRequest;
+  export function connect(url: string | URL | ReqOptions, method?: string | ReqOptions): WumpRequest;
+  export function options(url: string | URL | ReqOptions, method?: string | ReqOptions): WumpRequest;
+
+  export function getProfile(name: string): { [x: string]: any };
+  export function setProfile(name: string, profileData: { [x: string]: any }): void;
+  export function setDefaults(profileData: { [x: string]: any }): void;
+
+  export class WumpRequest {
+    public o: {
+      m: string;
+      url: URL;
+      parse: 'json' | 'form';
+      follow: boolean;
+      streamed: boolean;
+      chaining: boolean;
+      compressed: boolean;
+      timeoutTime: number;
+      rHeaders: { [x: string]: string; }
+      coreOptions: { [x: string]: any };
+      body, json: any;
+      data, form: any;
     }
-    export class WumpResponse {
-        public body: Buffer | string;
-        public coreRes: ServerResponse;
-        public headers: { [x: string]: string };
-        public statusCode: number;
-        constructor(res: any);
-        private _addChunk(chunk: any): void;
-        public text(): string;
-        public json(): NormalObject;
-        public json<T>(): T;
-    }
-    export type KVObject = { [x: string]: string };
-    export type NormalObject = { [x: string]: any };
-    export type URLMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | "DELETE" | 'CONNECT' | 'OPTIONS' | 'TRACE';
-    export interface URLOptions {
-        url: string;
-        method: URLMethods;
-        data?: NormalObject;
-        headers?: KVObject;
-        chaining?: boolean;
-        parse?: 'json' | 'buffer' | 'form';
-    }
-    export interface MethodOptions {
-        method?: URLMethods;
-        data?: NormalObject;
-        headers?: KVObject;
-        chaining?: boolean;
-        parse?: 'json' | 'buffer' | 'form';
-    }
-    export default function w(url: string | URLOptions, method?: URLMethod | MethodOptions): WumpRequest;
+    constructor(url: string | URL | ReqOptions, method?: string | ReqOptions);
+    public body(data: any, sendAs?: 'json' | 'form' | 'buffer'): this;
+    public path(path: string): this;
+    public query(name: string | { [x: string]: string }, value?: string): this;
+    public header(name: string | { [x: string]: string }, value?: string): this;
+    public option(name: string, value: string): this;
+    public timeout(timeout: number): this;
+    public stream(): this;
+    public compress(): this;
+    public send(): Promise<WumpResponse>;
+  }
+
+  export class WumpResponse {
+    public body: Buffer | { [x: string]: any } | string;
+    public coreRes: ServerResponse;
+    public headers: { [x: string]: string };
+    public statusCode: number;
+
+    constructor(res: any);
+    public text(): string;
+    public json(): { [x: string]: any };
+    public buffer(): Buffer;
+    public json<T>(): T;
+    public parse(): string | { [x: string]: any };
+    private _addChunk(chunk: any): void;
+  }
+
+  export interface ReqOptions {
+    url?: string | URL;
+    parse?: 'json' | 'form';
+    method?: string;
+    sendDataAs?: 'json' | 'form' | 'buffer';
+    chain?: boolean;
+    streamed?: boolean;
+    compressed?: boolean;
+    followRedirects?: boolean;
+    timeout?: number;
+    headers?: { [x: string]: string };
+    coreOptions?: { [x: string]: any };
+    body?, json?: any;
+    data?, form?: any;
+  }
 }

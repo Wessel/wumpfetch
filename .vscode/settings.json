@@ -1,0 +1,159 @@
+/*
+  / General vscode settings for all my projects
+  / Made by Wessel "wesselgame" T <discord@go2it.eu> (https://github.com/PassTheWessel)
+
+  ? Extensions: rainglow, eslint, material icon theme, gitlens, fish-vscode, Docker, EditorConfig for VS Code
+  ? Popping and Locking theme, Sass, stylelint, SVG viewer, Trailing spaces, Auto renaming tags, Better Comments,
+  ? Regex previewer
+
+  * Color themes: Banner (rainglow), Hyrule (rainglow), Azure (rainglow), Github (rainglow),
+  * Heroku (rainglow), Popping and Locking
+
+  * Comment legend:
+    / Info
+    * Note
+    ? Question
+    ! Somenthing's wrong
+    > Changed
+    + Added
+    - Removed
+    todo TODO
+*/
+{
+  // ? Window - the window options
+  "window.zoomLevel": 0,
+  // ? Editor - the text editor config
+  "editor.fontSize": 13,
+  "editor.fontWeight": "200",
+  "editor.fontFamily": "'SFMono-Regular','Consolas','Liberation Mono','Menlo','Courier','monospace','Operator Mono SSm Lig','OperatorMonoSSmLig-Book'",
+  "editor.lineHeight": 20,
+  "editor.cursorStyle": "line",
+  "editor.lineNumbers": "relative",
+  "editor.cursorWidth": 0,
+  "editor.fontLigatures": true,
+  "editor.cursorBlinking": "blink",
+  "editor.minimap.enabled": true,
+  "editor.smoothScrolling": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.minimap.renderCharacters": true,
+  "editor.tabSize": 2,
+  "editor.autoIndent": true,
+  "editor.insertSpaces": true,
+  "editor.tabCompletion": "on",
+  "editor.formatOnPaste": true,
+  "editor.detectIndentation": false,
+  "editor.wordWrap": "off",
+  "editor.matchBrackets": true,
+  "editor.renderWhitespace": "none",
+  "editor.autoClosingBrackets": "always",
+  "editor.tokenColorCustomizations": {
+    "types": "#C59F61",
+    "strings": "#F6EB90",
+    "numbers": "#C54121",
+    "keywords": "#C59F49",
+    "comments": "#6a737d",
+    "variables": "#C55F45",
+    "functions": "#C59F55"
+  },
+  // ? Workbench - the general working area
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Darkside (rainglow)",
+  "workbench.editor.showTabs": true,
+  "workbench.statusBar.visible": true,
+  "workbench.editor.tabSizing": "fit",
+  "workbench.sideBar.location": "left",
+  // ? Debug - personal prefrences for debugging
+  "debug.toolBarLocation": "floating",
+  "debug.allowBreakpointsEverywhere": true,
+  // ? Console - self explanitory
+  "terminal.integrated.shell.windows": "C:\\Windows\\System32\\bash.exe", // C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe
+  // ? Files - exclude extensions/files and turn autosave on/off
+  "files.autoSave": "off",
+  "files.exclude": {
+    "**/.git": false,
+    "**/.svn": false,
+    "**/.hg": false,
+    "**/CVS": false,
+    "**/.DS_Store": false
+  },
+  // ? Breadcrumbs - the bar at the top with the current function path
+  "breadcrumbs.enabled": true,
+  "breadcrumbs.filePath": "last",
+  "breadcrumbs.symbolPath": "on",
+  "breadcrumbs.symbolSortOrder": "name",
+  // ? Git (version management)
+  "git.enableSmartCommit": true,
+  "git.ignoreLimitWarning": true,
+  // ? ESlint - linter to keep my code clean
+  "eslint.enable": true,
+  "eslint.packageManager": "yarn",
+  // ? Languages - language-specific settings
+  "[yaml]": {
+    "editor.tabSize": 2,
+    "editor.autoIndent": false,
+    "editor.insertSpaces": true
+  },
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": false
+  },
+  // ? Live share - coding in or with friends
+  "liveshare.featureSet": "insiders",
+  // ? Better comments - Colorizes comments
+  "better-comments.tags": [
+    {
+      "tag": "/",
+      "color": "#008080",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      "tag": "+",
+      "color": "#00ff00",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      "tag": ">",
+      "color": "#FF00FF",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      "tag": "-",
+      "color": "#ff0000",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      "tag": "!",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      "tag": "?",
+      "color": "#3498DB",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      "tag": "//",
+      "color": "#474747",
+      "strikethrough": true,
+      "backgroundColor": "transparent"
+    },
+    {
+      "tag": "todo",
+      "color": "#FF8C00",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    },
+    {
+      "tag": "*",
+      "color": "#98C379",
+      "strikethrough": false,
+      "backgroundColor": "transparent"
+    }
+  ]
+}
