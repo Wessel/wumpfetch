@@ -32,8 +32,10 @@ declare module 'wumpfetch' {
       timeoutTime: number;
       rHeaders: { [x: string]: string; }
       coreOptions: { [x: string]: any };
-      body, json: any;
-      data, form: any;
+      body: any;
+      json: any;
+      data: any;
+      form: any;
     }
     constructor(url: string | URL | ReqOptions, method?: string | ReqOptions);
     public body(data: any, sendAs?: 'json' | 'form' | 'buffer'): this;
@@ -74,7 +76,9 @@ declare module 'wumpfetch' {
     timeout?: number;
     headers?: { [x: string]: string };
     coreOptions?: { [x: string]: any };
-    body?, json?: any;
-    data?, form?: any;
+    body?: any;
+    json?: any;
+    data?: any;
+    form?: any;
   }
 }
